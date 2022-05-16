@@ -35,7 +35,7 @@ def userlogin(request):
             user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
             if user == None:
                 return render(request, 'usrauth/login.html', {'form': AuthenticationForm(),
-                                                           'error': 'Username or password in wrong, please try again! '})
+                                                           'error': 'Username or password is wrong, please try again! '})
             else:
                 login(request, user)
                 return redirect('dashlanding')
@@ -44,4 +44,4 @@ def userlogout(request):
     # This is needed to neutralize some browser's precache behaviour (Calling logout function which resides in a link)
     if request.method == 'POST':
         logout(request)
-        return redirect('userlogin')             
+        return redirect('home')             

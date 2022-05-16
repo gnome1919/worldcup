@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from landing import views as lndviews
 from usrauth import views as authviews
 from dashboard import views as dashviews
 
@@ -22,11 +23,15 @@ from dashboard import views as dashviews
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    # Landing and home page
+    path('', lndviews.landing, name='landing'),
+    path('home', lndviews.landing, name='landing'),
+    path('landing', lndviews.landing, name='landing'),
+
     # User creation and authentication        
     path('signup/', authviews.usersignup, name='usersignup'),
     path('login/', authviews.userlogin, name='userlogin'),
     path('logout/', authviews.userlogout, name='userlogout'),
-
 
     # User Dashboard
     path('dashboard/', dashviews.landing, name='dashlanding'),

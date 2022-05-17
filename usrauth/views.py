@@ -7,7 +7,7 @@ from django.db import IntegrityError
 
 def usersignup(request):
     if request.user.is_authenticated:
-        return redirect('dashlanding')
+        return redirect('dashmain')
     else:
         if request.method == 'GET':
             return render(request, 'usrauth/signup.html', {'form': UserCreationForm()})
@@ -17,7 +17,7 @@ def usersignup(request):
                     user = User.objects.create_user(request.POST['username'], password=request.POST['password1']) # Creating a user object
                     user.save() # Saving the user object to database
                     login(request, user)
-                    return redirect('dashlanding')
+                    return redirect('dashmain')
                 except IntegrityError:
                     return render(request, 'usrauth/signup.html', {'form': UserCreationForm(),
                                                                 'error': 'Username exists, please choose another one! '})
@@ -27,7 +27,7 @@ def usersignup(request):
 
 def userlogin(request):
     if request.user.is_authenticated:
-        return redirect('dashlanding')            
+        return redirect('dashmain')            
     else:
         if request.method == 'GET':
             return render(request, 'usrauth/login.html', {'form': AuthenticationForm()})
@@ -38,7 +38,7 @@ def userlogin(request):
                                                            'error': 'Username or password is wrong, please try again! '})
             else:
                 login(request, user)
-                return redirect('dashlanding')
+                return redirect('dashmain')
 
 def userlogout(request):
     # This is needed to neutralize some browser's precache behaviour (Calling logout function which resides in a link)

@@ -15,6 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
+
 from landing import views as lndviews
 from usrauth import views as authviews
 from dashboard import views as dashviews
@@ -24,9 +27,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # Landing and home page
-    path('', lndviews.landing, name='landing'),
-    path('home', lndviews.landing, name='landing'),
-    path('landing', lndviews.landing, name='landing'),
+    path('', lndviews.landing),
+    path('home/', lndviews.landing),
+    path('landing/', lndviews.landing, name='landing'),
 
     # User creation and authentication        
     path('signup/', authviews.usersignup, name='usersignup'),
@@ -34,5 +37,8 @@ urlpatterns = [
     path('logout/', authviews.userlogout, name='userlogout'),
 
     # User Dashboard
-    path('dashboard/', dashviews.landing, name='dashlanding'),
+    path('dashboard/', dashviews.dashmain, name='dashmain'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

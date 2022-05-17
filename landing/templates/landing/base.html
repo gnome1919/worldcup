@@ -9,10 +9,8 @@
 
     <!-- Putting submit as type makes clicking this button as default when user hit Enter -->
     <p>Greetings {{ user.name }}</p>
-    <button type="submit">Logout</button>
-    {% comment %} <form action="https://google.com">
-        <input type="submit" value="Go to Google" />
-    </form> {% endcomment %}
+    <button type="submit" class="btn btn-primary shadow-lg ms-5">Logout</button>
+    {% comment %} <a href="{% url  %}" class="btn btn-primary shadow-sm">link</a> {% endcomment %}
     
 </form>
 

@@ -1,4 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, logout, authenticate
 
-def landing(request):
-    return render(request, 'dashboard/landing.html')
+def dashmain(request):
+    if request.method == 'POST':
+        logout(request)
+        return redirect('dashmain')
+    else:
+        return render(request, 'dashboard/dashmain.html')

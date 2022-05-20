@@ -1,3 +1,5 @@
 from django.contrib import admin
+from matches.models import Match
+from predictions.models import UserPrediction
 
-# Register your models here.
+admin.site.register([Match, UserPrediction])

@@ -1,0 +1,48 @@
+1,A,2022-11-21,16:00,Qatar,Ecuador
+2,A,2022-11-21,10:00,Senegal,Netherlands
+3,B,2022-11-21,13:00,England,Iran
+4,B,2022-11-21,19:00,United States,European playoffs
+5,D,2022-11-22,19:00,France,Intercontinental playoffs 1
+6,D,2022-11-22,13:00,Denmark,Tunisia
+7,C,2022-11-22,16:00,Mexico,Poland
+8,C,2022-11-22,10:00,Argentina,Saudi Arabia
+9,F,2022-11-23,19:00,Belgium,Canada
+10,E,2022-11-23,16:00,Spain,Intercontinental playoffs 2
+11,E,2022-11-23,13:00,Germany,Japan
+12,F,2022-11-23,10:00,Morocco,Croatia
+13,G,2022-11-24,10:00,Switzerland,Cameroon
+14,H,2022-11-24,13:00,Uruguay,South Korea
+15,H,2022-11-24,16:00,Portugal,Ghana
+16,G,2022-11-24,19:00,Brazil,Serbia
+17,B,2022-11-25,10:00,European playoffs,Iran
+18,A,2022-11-25,13:00,Qatar,Senegal
+19,A,2022-11-25,16:00,Netherlands,Ecuador
+20,B,2022-11-25,19:00,England,United States
+21,D,2022-11-26,10:00,Tunisia,Intercontinental playoffs 1
+22,C,2022-11-26,13:00,Poland,Saudi Arabia
+23,D,2022-11-26,16:00,France,Denmark
+24,C,2022-11-26,19:00,Argentina,Mexico
+25,E,2022-11-27,10:00,Japan,Intercontinental playoffs 2
+26,F,2022-11-27,13:00,Belgium,Morocco
+27,F,2022-11-27,16:00,Croatia,Canada
+28,E,2022-11-27,19:00,Spain,Germany
+29,G,2022-11-28,10:00,Cameroon,Serbia
+30,H,2022-11-28,13:00,South Korea,Ghana
+31,G,2022-11-28,16:00,Brazil,Switzerland
+32,H,2022-11-28,19:00,Portugal,Uruguay
+33,B,2022-11-29,19:00,European playoffs,England
+34,B,2022-11-29,19:00,Iran,United States
+35,A,2022-11-29,15:00,Ecuador,Senegal
+36,A,2022-11-29,15:00,Netherlands,Qatar
+37,D,2022-11-30,15:00,Intercontinental playoffs 1,Denmark
+38,D,2022-11-30,15:00,Tunisia,France
+39,C,2022-11-30,19:00,Poland,Argentina
+40,C,2022-11-30,19:00,Saudi Arabia,Mexico
+41,F,2022-12-01,15:00,Croatia,Belgium
+42,F,2022-12-01,15:00,Canada,Morocco
+43,E,2022-12-01,19:00,Japan,Spain
+44,E,2022-12-01,19:00,Intercontinental playoffs 2,Germany
+45,H,2022-12-02,15:00,Ghana,Uruguay
+46,H,2022-12-02,15:00,South Korea,Portugal
+47,G,2022-12-02,19:00,Serbia,Switzerland
+48,G,2022-12-02,19:00,Cameroon,Brazil

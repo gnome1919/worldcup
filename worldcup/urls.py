@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 from landing import views as lndviews
 from usrauth import views as authviews
 from dashboard import views as dashviews
-
+from predictions import views as predictviews
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -38,6 +38,8 @@ urlpatterns = [
 
     # User Dashboard
     path('dashboard/', dashviews.dashmain, name='dashmain'),
+    
+    path('user_predictions/', predictviews.user_predictions, name='user_predictions'),
 ]
 
 if settings.DEBUG:

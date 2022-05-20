@@ -18,7 +18,9 @@
                         <!-- Putting submit as type makes clicking this button as default when user hit Enter -->
                         <h2>Greetings {{ user.name }}</h2>
                         <button type="submit" class="btn btn-primary shadow-lg">Logout</button>
-                        <a class="btn btn-primary shadow-lg" href="#">Home</a>    
+                        <a class="btn btn-primary shadow-lg" href="#">Home</a>
+                        <a class="btn btn-primary shadow-lg" href="{% url 'user_predictions' %}">My Predictions</a>
+                        <a class="btn btn-primary shadow-lg" href="{% url 'user_predictions' %}">Others Predictions</a>
                     </form>
                 </li>          
                 {% else %}

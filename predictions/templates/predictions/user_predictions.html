@@ -20,7 +20,10 @@
         <li class="d-flex flex-row mb-3">
             <div id="TeamsContainer" class="p-2">{{ match.team_1 }} vs {{ match.team_2 }}</div>
             <div class="d-inline-flex p-2">
-                <input id="ResultContainer" name="{{ match }}" placeholder="0:0">
+                {% if predictions.all|intersection:match %}
+                    <input id="ResultContainer" name="{{ match.pk }}" value="{{ predictions.objects.get(match).result }}" placeholder="0:0">
+                {% else %}
+                    <input id="ResultContainer" name="{{ match.pk }}" placeholder="0:0">
             </div>
         </li>
     </ul>

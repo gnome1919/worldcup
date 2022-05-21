@@ -2,18 +2,28 @@ from django.shortcuts import render, redirect
 from matches.models import Match
 from .forms import UserPredictionForm
 from .models import UserPrediction
+from django import template
+
+register = template.Library()
+# Method 1 for django queryset (Better)
+@register.filter    
+def intersection(queryset1,queryset2):
+    return queryset1 & queryset2
 
 def user_predictions(request):
     if request.user.is_authenticated:
         if request.method == 'GET':
             matches = Match.objects.all()
+            predictions = UserPrediction.objects.filter(user=request.user)
             return render(request, 'predictions/user_predictions.html',
-                          {'matches': matches, 'form': UserPredictionForm()})
+                          {'matches': matches, 'form': UserPredictionForm(), 'predictions':predictions})
         else:
             matches = Match.objects.all()
             for match in matches:
                 if request.POST[str(matches)] == True:
                     prediction = UserPrediction
+                    
+
     else:
         return redirect('userlogin')
     # else:

@@ -15,14 +15,14 @@ def user_predictions(request):
         if request.method == 'GET':
             matches = Match.objects.all()
             predictions = UserPrediction.objects.filter(user=request.user)
+            check = '0'
             return render(request, 'predictions/user_predictions.html',
-                          {'matches': matches, 'form': UserPredictionForm(), 'predictions':predictions})
+                          {'matches': matches, 'form': UserPredictionForm(), 'predictions':predictions, 'check':check})
         else:
             matches = Match.objects.all()
             for match in matches:
                 if request.POST[str(matches)] == True:
-                    prediction = UserPrediction
-                    
+                    prediction = UserPrediction                  
 
     else:
         return redirect('userlogin')

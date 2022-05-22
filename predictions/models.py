@@ -16,4 +16,4 @@ class UserPrediction(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return (str(self.pk) + ' ' + self.match.team_1 + ' vs ' + self.match.team_2)
+        return (str(self.user) + ' ' + self.match.team_1 + ' vs ' + self.match.team_2)

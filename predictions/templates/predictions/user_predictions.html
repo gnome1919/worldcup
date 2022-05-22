@@ -14,27 +14,32 @@
     }    
 </style>
 <body>
+    {% if button == 'back' %}
+        <p class="d-flex flex-row mb-3" style="color:red; font-size:1.5rem" > {{ error }} </p>
+        <p class="d-flex flex-row mb-3" style="color:green; font-size:1.5rem" > {{ success }} </p>
+        <a class="btn btn-primary shadow-lg" href="{% url 'user_predictions' %}">My Predictions</a> 
+    {% endif %}
     <form method="POST">
+
     {% csrf_token %}
-    {% for match in matches %}
+
+    {% for user_result in user_results %}
+
         <ul id="MianContainer">
             <li class="d-flex flex-row mb-3">
-                <div id="TeamsContainer" class="p-2">{{ match.team_1 }} vs {{ match.team_2 }}</div>
+                <div id="TeamsContainer" class="p-2"> {{ user_result.team1 }} vs {{ user_result.team2 }} </div>
                 <div class="d-inline-flex p-2">
-                {% for prediction in predictions %}
-                    {% if prediction.match.pk == match.pk %}
-                    {{ check|add:"10" }}
-                        <input id="ResultContainer" name="{{ match.pk }}" value="{{ prediction.result }}">                        
-                    {% endif %}
-                {% endfor %} 
-                {% if check == '0' %}
-                    <input id="ResultContainer" name="{{ match.pk }}" placeholder="0:0">
-                {% endif %}
+                    <input {% if user_result.isActive is False %} disabled {% endif %} id="ResultContainer" name="{{ user_result.matchID }}" value="{{ user_result.userMatchPrediction }}" pattern="[0-9]{1,2}:[0-9]{1,2}" placeholder="0:0">
                 </div>
             </li>
         </ul>
+
     {% endfor %}
+
+    {% if button != 'back' %}
     <button class="btn btn-primary shadow-lg" type="submit">Save all</button>
+    {% endif %}
+
     </form>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>

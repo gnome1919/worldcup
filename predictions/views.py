@@ -45,7 +45,6 @@ def get_user_prediction(user):
 
 def save_user_prediction(request):
     matches = Match.objects.all()
-    # predictions = UserPrediction.objects.filter(user=request.user)
     for match in matches:
         if request.POST[str(match.id)] != '':
             match_datetime = dt.datetime.combine(match.match_date, match.match_time)
@@ -65,20 +64,3 @@ class userPredictionDto:
         self.team1 = team1
         self.team2 = team2
         self.isActive=isActive
-
-# else:
-#     if request.method == 'GET':
-#         return render(request, 'usrauth/signup.html', {'form': UserCreationForm()})
-#     else:
-#         if request.POST['password1'] == request.POST['password2']:
-#             try:                
-#                 user = User.objects.create_user(request.POST['username'], password=request.POST['password1']) # Creating a user object
-#                 user.save() # Saving the user object to database
-#                 login(request, user)
-#                 return redirect('dashmain')
-#             except IntegrityError:
-#                 return render(request, 'usrauth/signup.html', {'form': UserCreationForm(),
-#                                                             'error': 'Username exists, please choose another one! '})
-#         else:
-#             return render(request, 'usrauth/signup.html', {'form': UserCreationForm(),
-#                                                         'error': 'Password did not match, please try again! '})

@@ -1,24 +1,35 @@
+<!DOCTYPE html>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+<body>
+    {% if user.is_authenticated %}
 
-{% if user.is_authenticated %}
+    <form method="POST" style="margin-bottom: 1px;">
 
-<form method="POST">
+        <!-- For preventing Cross-site request forgery (CSRF) attack -->
+        {% csrf_token %}
 
-    <!-- For preventing Cross-site request forgery (CSRF) attack -->
-    {% csrf_token %}
+        <!-- Putting submit as type makes clicking this button as default when user hit Enter -->
+        <h2>Greetings {{ user.first_name }}</h2>
+        <a class="btn btn-primary shadow-lg" style="margin-bottom: 5px; margin-left: 10px;" href="{% url 'user_logout' %}">Logout</a>
+        {% comment %} <a href="{% url  %}" class="btn btn-primary shadow-sm">link</a> {% endcomment %}
+        
+    </form>
 
-    <!-- Putting submit as type makes clicking this button as default when user hit Enter -->
-    <p>Greetings {{ user.name }}</p>
-    <button type="submit" class="btn btn-primary shadow-lg ms-5">Logout</button>
-    {% comment %} <a href="{% url  %}" class="btn btn-primary shadow-sm">link</a> {% endcomment %}
-    
-</form>
+    {% else %}
 
-{% else %}
+    <h4>You are not logged in</h4>
+    <a class="btn btn-primary shadow-lg" style="margin-bottom: 5px; margin-left: 10px;" href="{% url 'user_login' %}">Login</a>
 
-<h4>You are not logged in</h4>
-<a href="{% url 'userlogin' %}">Login</a>
+    {% endif %}
 
-{% endif %}
+    {% block 'contents' %}{% endblock %}
+</body>    
 
-{% block 'contents' %}{% endblock %}
+
+{% block 'script' %}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+{% endblock %}
+

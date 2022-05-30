@@ -9,7 +9,7 @@
 <!-- POST is like GET but makes the variables in the URL hidden. Also POST is generally used for changing something
      in the database while GET is used for reading from database. When we call a URL it's always a GET,
      POST is a method for forms and is originated from inside of the code  -->
-<form method="POST">
+<form method="POST" action="{% url 'user_signup' %}">
 
     <!-- For preventing Cross-site request forgery (CSRF) attack -->
     {% csrf_token %}

@@ -6,7 +6,7 @@ from .models import UserPrediction
 
 def user_predictions(request):
     if not request.user.is_authenticated:
-        return redirect('userlogin')
+        return redirect('user_login')
 
     match request.method:
         case 'GET':

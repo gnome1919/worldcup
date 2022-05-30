@@ -4,28 +4,27 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
+from django.contrib import messages
+from .forms import SignUpForm
 
-def usersignup(request):
-    if request.user.is_authenticated:
-        return redirect('dashmain')
-    else:
-        if request.method == 'GET':
-            return render(request, 'usrauth/signup.html', {'form': UserCreationForm()})
+def user_signup(request):
+    if not request.user.is_authenticated:
+        if request.method == 'POST':
+            form = SignUpForm(request.POST)
+            if form.is_valid():
+                form.save()
+                username = form.cleaned_data['username']
+                password = form.cleaned_data['password1']
+                user = authenticate(username=username, password=password)
+                login(request, user)
+                messages.success(request, 'User registration successful')
+                return redirect('dashmain')
         else:
-            if request.POST['password1'] == request.POST['password2']:
-                try:                
-                    user = User.objects.create_user(request.POST['username'], password=request.POST['password1']) # Creating a user object
-                    user.save() # Saving the user object to database
-                    login(request, user)
-                    return redirect('dashmain')
-                except IntegrityError:
-                    return render(request, 'usrauth/signup.html', {'form': UserCreationForm(),
-                                                                'error': 'Username exists, please choose another one! '})
-            else:
-                return render(request, 'usrauth/signup.html', {'form': UserCreationForm(),
-                                                            'error': 'Password did not match, please try again! '})
+            form = SignUpForm()
+        return render(request, 'usrauth/signup.html', {'form': form})                                                            
+    return redirect('dashmain')
 
-def userlogin(request):
+def user_login(request):
     if request.user.is_authenticated:
         return redirect('dashmain')            
     else:
@@ -40,8 +39,8 @@ def userlogin(request):
                 login(request, user)
                 return redirect('dashmain')
 
-def userlogout(request):
-    # This is needed to neutralize some browser's precache behaviour (Calling logout function which resides in a link)
-    if request.method == 'POST':
-        logout(request)
-        return redirect('home')             
+def user_logout(request):
+    #(?) This is needed to neutralize some browser's precache behaviour (Calling logout function which resides in a link)
+    # if request.method == 'POST':
+    logout(request)
+    return redirect('landing')             

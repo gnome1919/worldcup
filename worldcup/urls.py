@@ -32,9 +32,9 @@ urlpatterns = [
     path('landing/', lndviews.landing, name='landing'),
 
     # User creation and authentication        
-    path('signup/', authviews.usersignup, name='usersignup'),
-    path('login/', authviews.userlogin, name='userlogin'),
-    path('logout/', authviews.userlogout, name='userlogout'),
+    path('signup/', authviews.user_signup, name='user_signup'),
+    path('login/', authviews.user_login, name='user_login'),
+    path('logout/', authviews.user_logout, name='user_logout'),
 
     # User Dashboard
     path('dashboard/', dashviews.dashmain, name='dashmain'),

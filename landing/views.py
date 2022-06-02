@@ -6,13 +6,6 @@ from matches.models import Match
 from django.contrib.auth.models import User
 from predictions.models import UserPrediction
 
-# def landing(request):
-#     if request.method == 'POST':
-#         logout(request)
-#         return redirect('home')
-#     else:
-#         return render(request, 'landing/landing.html')
-
 def landing(request):
     predictions = UserPrediction.objects.all()
     users = User.objects.all()

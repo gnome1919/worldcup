@@ -43,18 +43,18 @@ def get_user_prediction(user):
                 isActive=match_datetime >= dt.datetime.now()))
     return {'user_results': user_results}
 
-def save_user_prediction(request):
+def save_user_prediction(respond):
     matches = Match.objects.all()
     for match in matches:
-        if request.POST[str(match.id)] != '':
+        if respond.POST[str(match.id)] != '':
             match_datetime = dt.datetime.combine(match.match_date, match.match_time)
             match_datetime = match_datetime - dt.timedelta(hours=3)           
             if match_datetime < dt.datetime.now():
-                return {'error': 'Time is up for one or some of the matches', 'button':'back'}            
-            user_prediction, created = UserPrediction.objects.update_or_create(match=match, user=request.user,
-                                        defaults={'match':match, 'user':request.user, 'result': request.POST[str(match.id)]})
+                return {'error': 'Time is up for one or some of the matches', 'save_tried':True}            
+            user_prediction, created = UserPrediction.objects.update_or_create(match=match, user=respond.user,
+                                        defaults={'match':match, 'user':respond.user, 'result': respond.POST[str(match.id)]})
 
-    return {'success': 'Prediction(s) Saved!', 'button':'back'}
+    return {'success': 'Prediction(s) Saved!', 'save_tried':True}
 
 class userPredictionDto:
     def __init__(self, matchID, userID, userMatchPrediction, team1, team2, isActive):

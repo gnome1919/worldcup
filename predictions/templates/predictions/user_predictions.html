@@ -2,6 +2,7 @@
 
 {% block 'contents' %}
 
+
 <body>
     <div class="d-flex justify-content-center container-fluid" style="margin-top: 10px;">
         {% if save_tried %} 
@@ -12,24 +13,33 @@
             {% csrf_token %}
 
             {% for user_result in user_results %}
-                <div class="row row-cols-2 row-cols-lg-12 m-2 justify-content-start">
-                    <div class="col-8">
-                        <label class="col-form-label float-end" for="teams-input"> {{ user_result.team1 }} vs {{ user_result.team2 }} </label>
+                <div class="row row-cols-2 row-cols-lg-12 justify-content-center">
+                    <div class="col-3">
+                        <label class="col-form-label float-end" for="teams-input"> {{ user_result.team1 }} </label>
                     </div>
-                    <div class="col-4">
-                        <input class="form-contol text-center float-start" style="width:50px" id="teams-input" name="{{ user_result.matchID }}" {% if user_result.isActive is False %} disabled {% endif %} value="{{ user_result.userMatchPrediction }}" pattern="[0-9]{1,2}:[0-9]{1,2}" placeholder="0:0">
+                    <div class="col-1">
+                        <input class="form-contol text-center float-start" style="width:25px" id="teams-input" name="{{ user_result.matchID }}_team1" {% if user_result.isActive is False %} disabled {% endif %} value="{{ user_result.team1_goals }}" pattern="[0-9]{1,2}" placeholder="-">
+                    </div>
+                    <div class="col-1">
+                        <label class="col-form-label d-flex justify-content-center" for="teams-input"> : </label>
+                    </div>
+                    <div class="col-1">
+                        <input class="form-contol text-center float-start" style="width:25px" id="teams-input" name="{{ user_result.matchID }}_team2" {% if user_result.isActive is False %} disabled {% endif %} value="{{ user_result.team2_goals }}" pattern="[0-9]{1,2}" placeholder="-">
+                    </div>
+                    <div class="col-3">
+                        <label class="col-form-label float-start" for="teams-input"> {{ user_result.team2 }} </label>
                     </div>
                 </div>
             {% endfor %}
 
             {% if not save_tried %}
-                <div class="col-9">
-                    <button class="btn btn-primary shadow-lg float-end" type="submit">Save all</button>
+                <div class="row row-cols-lg-12 d-flex justify-content-center p-3">
+                    <button class="btn btn-primary shadow-lg" style="width: 100px" type="submit">Save all</button>
                 </div>
             {% endif %}
 
         </form>
-    <div/>
+    </div>
 </body>
 
 {% endblock %}
